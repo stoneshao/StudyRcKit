@@ -1,13 +1,18 @@
 package rym.study.rckit.activity;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 import io.rong.imkit.RongIM;
 import io.rong.imkit.fragment.ConversationListFragment;
@@ -75,19 +80,21 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_chat:
-//                LayoutInflater inflater = getLayoutInflater();
-//                final View view = inflater.inflate(R.layout.dialog_open_chat, null);
-//                new AlertDialog.Builder(this).setTitle("Private chat").setView(view)
-//                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                String targetId = ((EditText) view.findViewById(R.id.edit_chat_to)).getText().toString();
-//                                Log.d(TAG, "chat to = " + targetId);
-//                                RongIM.getInstance().startPrivateChat(MainActivity.this, targetId, null);
-//                            }
-//                        }).setNegativeButton("Cancel", null).show();
+                LayoutInflater inflater = getLayoutInflater();
+                final View view = inflater.inflate(R.layout.dialog_open_chat, null);
+                new AlertDialog.Builder(this).setTitle("Private chat").setView(view)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String targetId = ((EditText) view.findViewById(R.id.edit_chat_to)).getText().toString();
+                                Log.d(TAG, "chat to = " + targetId);
+                                RongIM.getInstance().startPrivateChat(MainActivity.this, targetId, null);
+                            }
+                        }).setNegativeButton("Cancel", null).show();
                 break;
-            case R.id.menu_about:
+            case R.id.menu_test_case1:
+                break;
+            case R.id.menu_test_case2:
                 break;
             default:
         }
