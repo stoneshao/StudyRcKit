@@ -114,7 +114,7 @@ public class LoginActivity extends AppCompatActivity implements Handler.Callback
                 Log.d(TAG, "connectIMServer onSuccess. userId = " + userId);
                 Intent intent = new Intent();
                 intent.putExtra("UserID", userId);
-                intent.setClass(LoginActivity.this, MainActivity.class);
+                intent.setClass(LoginActivity.this, ConversationListActivity.class);
                 startActivity(intent);
                 finish();
             }

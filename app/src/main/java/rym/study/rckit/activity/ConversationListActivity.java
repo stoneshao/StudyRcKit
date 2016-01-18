@@ -20,15 +20,15 @@ import io.rong.imlib.model.Conversation;
 import io.rong.imlib.model.UserInfo;
 import rym.study.rckit.R;
 
-public class MainActivity extends AppCompatActivity {
+public class ConversationListActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "ConListActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_conversation_list);
 
         initView();
         initSettings();
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 String targetId = ((EditText) view.findViewById(R.id.edit_chat_to)).getText().toString();
                                 Log.d(TAG, "chat to = " + targetId);
-                                RongIM.getInstance().startPrivateChat(MainActivity.this, targetId, null);
+                                RongIM.getInstance().startPrivateChat(ConversationListActivity.this, targetId, null);
                             }
                         }).setNegativeButton("Cancel", null).show();
                 break;
