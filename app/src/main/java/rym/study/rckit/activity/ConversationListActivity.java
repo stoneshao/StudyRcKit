@@ -16,11 +16,9 @@ import android.widget.EditText;
 
 import io.rong.imkit.RongIM;
 import io.rong.imkit.fragment.ConversationListFragment;
-import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Conversation;
 import io.rong.imlib.model.UserInfo;
 import rym.study.rckit.R;
-import rym.study.rckit.message.CustomizeMessage;
 
 public class ConversationListActivity extends AppCompatActivity {
 
@@ -45,7 +43,7 @@ public class ConversationListActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_conversation_list, menu);
         return true;
     }
 

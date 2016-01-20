@@ -6,8 +6,6 @@ import android.content.Context;
 import android.util.Log;
 
 import io.rong.imkit.RongIM;
-import io.rong.imlib.RongIMClient;
-import io.rong.imlib.model.Message;
 import rym.study.rckit.message.CustomizeMessage;
 
 public class App extends Application {
