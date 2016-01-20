@@ -15,8 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -86,12 +86,17 @@ public class LoginActivity extends AppCompatActivity implements Handler.Callback
     @Override
     public boolean handleMessage(Message msg) {
         Log.d(TAG, "Http response = " + msg.obj);
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = parser.parse((String) msg.obj).getAsJsonObject();
-        int code = jsonObject.get("code").getAsInt();
+        JSONObject jsonObj = null;
+        try {
+            jsonObj = new JSONObject((String) msg.obj);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        int code = jsonObj.optInt("code");
         if (code == 200) {
             String userId = ((EditText) findViewById(R.id.edit_user_id)).getText().toString();
-            String token = jsonObject.get("token").getAsString();
+            String token = jsonObj.optString("token");
             setLoginInfo(userId, token);
             connectIMServer(token);
         } else {
