@@ -58,7 +58,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data
-                    android:host="rym.study.study_rckit"
+                    android:host="rym.study.rckit"
                     android:path="/subconversationlist"
                     android:scheme="rong" />
             </intent-filter>
