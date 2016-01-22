@@ -19,6 +19,7 @@ import io.rong.imkit.fragment.ConversationListFragment;
 import io.rong.imlib.model.Conversation;
 import io.rong.imlib.model.UserInfo;
 import rym.study.rckit.R;
+import rym.study.rckit.utils.MathUtil;
 
 public class ConversationListActivity extends AppCompatActivity {
 
@@ -70,8 +71,11 @@ public class ConversationListActivity extends AppCompatActivity {
             @Override
             public UserInfo getUserInfo(String userId) {
                 Log.d(TAG, "getUserInfo id = " + userId);
-                String img = "https://www.baidu.com/img/bd_logo1.png";
-                return new UserInfo(userId, userId, Uri.parse(img));
+                int hash = MathUtil.getHashInt(userId, 108);
+                if (++hash >= 38)
+                    hash++;
+                String img = String.format("http://image4.360doc.com/DownloadImg/2009/10/10/349878_7044878_%d.jpg", hash);
+                return new UserInfo(userId, userId + "_nc", Uri.parse(img));
             }
         }, true);
     }
