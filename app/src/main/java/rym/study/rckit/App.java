@@ -7,6 +7,7 @@ import android.util.Log;
 
 import io.rong.imkit.RongIM;
 import rym.study.rckit.message.CustomizeMessage;
+import rym.study.rckit.message.CustomizeMessageItemProvider;
 
 public class App extends Application {
     private static final String TAG = "App";
@@ -19,6 +20,7 @@ public class App extends Application {
                 "io.rong.push".equals(getCurProcessName(getApplicationContext()))) {
             RongIM.init(this);
             RongIM.registerMessageType(CustomizeMessage.class);
+            RongIM.getInstance().registerMessageTemplate(new CustomizeMessageItemProvider());
         }
     }
 
