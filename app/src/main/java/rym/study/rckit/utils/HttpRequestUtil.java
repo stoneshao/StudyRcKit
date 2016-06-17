@@ -16,8 +16,8 @@ import java.security.MessageDigest;
 public class HttpRequestUtil extends Thread {
 
     private static final String TAG = "HttpRequestUtil";
-    public static final String APP_KEY = "p5tvi9dst19k4";
-    public static final String APP_SECRET = "nDkhVnhcemXU";
+    public static final String APP_KEY = "n19jmcy59ocx9";
+    public static final String APP_SECRET = "PblLNSx3hSkW";
 
     private static final String APPKEY = "RC-App-Key";
     private static final String NONCE = "RC-Nonce";

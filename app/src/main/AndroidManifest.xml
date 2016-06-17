@@ -64,34 +64,6 @@
             </intent-filter>
         </activity>
 
-        <!-- Voip caller Activity -->
-        <activity
-            android:name="io.rong.voipkit.activity.CallSideActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="rym.study.rckit"
-                    android:pathPrefix="/VoIPCall"
-                    android:scheme="rong" />
-            </intent-filter>
-        </activity>
-
-        <!-- Voip receiver Activity -->
-        <activity
-            android:name="io.rong.voipkit.activity.CalledSideActivity"
-            android:excludeFromRecents="true"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="rym.study.rckit"
-                    android:pathPrefix="/VoIPAccept"
-                    android:scheme="rong" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

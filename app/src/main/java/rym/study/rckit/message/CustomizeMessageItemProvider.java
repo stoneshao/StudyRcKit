@@ -10,9 +10,7 @@ import android.widget.TextView;
 
 import io.rong.imkit.model.ProviderTag;
 import io.rong.imkit.model.UIMessage;
-import io.rong.imkit.util.AndroidEmoji;
 import io.rong.imkit.widget.provider.IContainerItemProvider;
-import io.rong.imlib.model.Message;
 import rym.study.rckit.R;
 
 @ProviderTag(messageContent = CustomizeMessage.class, showPortrait = false, centerInHorizontal = true)
