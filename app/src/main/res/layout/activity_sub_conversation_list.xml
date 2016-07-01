@@ -11,6 +11,7 @@
         android:background="@color/colorPrimary" />
 
     <fragment
+        android:id="@+id/subcon_fragment"
         android:name="io.rong.imkit.fragment.SubConversationListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

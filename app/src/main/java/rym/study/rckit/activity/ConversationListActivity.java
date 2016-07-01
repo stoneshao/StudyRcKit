@@ -65,8 +65,8 @@ public class ConversationListActivity extends AppCompatActivity {
         ConversationListFragment fragment = (ConversationListFragment) getSupportFragmentManager().findFragmentById(R.id.conversationlist_fragment);
         Uri uri = Uri.parse("rong://" + getApplicationInfo().packageName).buildUpon()
                 .appendPath("conversationlist")
-                .appendQueryParameter(Conversation.ConversationType.PRIVATE.getName(), "false")
-                .appendQueryParameter(Conversation.ConversationType.GROUP.getName(), "true")
+                .appendQueryParameter(Conversation.ConversationType.PRIVATE.getName(), "true")
+                .appendQueryParameter(Conversation.ConversationType.GROUP.getName(), "false")
                 .appendQueryParameter(Conversation.ConversationType.DISCUSSION.getName(), "false")
                 .appendQueryParameter(Conversation.ConversationType.SYSTEM.getName(), "false")
                 .build();
@@ -104,16 +104,16 @@ public class ConversationListActivity extends AppCompatActivity {
                         }).setNegativeButton("Cancel", null).show();
                 break;
             case R.id.menu_test_case1:
-                CustomizeMessage msg = new CustomizeMessage();
-                RongIM.getInstance().getRongIMClient().sendMessage(Conversation.ConversationType.PRIVATE, "UserD", msg, null, null, new RongIMClient.SendMessageCallback() {
-                    @Override
-                    public void onSuccess(Integer integer) {
-                    }
-
-                    @Override
-                    public void onError(Integer messageId, RongIMClient.ErrorCode e) {
-                    }
-                });
+//                CustomizeMessage msg = new CustomizeMessage();
+//                RongIM.getInstance().getRongIMClient().sendMessage(Conversation.ConversationType.PRIVATE, "UserD", msg, null, null, new RongIMClient.SendMessageCallback() {
+//                    @Override
+//                    public void onSuccess(Integer integer) {
+//                    }
+//
+//                    @Override
+//                    public void onError(Integer messageId, RongIMClient.ErrorCode e) {
+//                    }
+//                });
                 break;
             case R.id.menu_test_case2:
                 break;
