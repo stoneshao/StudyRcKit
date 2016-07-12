@@ -36,7 +36,12 @@
 
         <activity
             android:name=".tools.RongWebviewActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="io.rong.imkit.intent.action.webview" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".widget.provider.TakingPicturesActivity"
@@ -44,7 +49,7 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name="io.rong.imkit.activity.PicturePagerActivity"
+            android:name=".activity.PicturePagerActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
 
 
@@ -85,6 +90,8 @@
         </receiver>
         
         <!--必选： SDK 核心功能-->
+
+        <!-- end -->
 
         <!-- imlib config begin -->
         <meta-data

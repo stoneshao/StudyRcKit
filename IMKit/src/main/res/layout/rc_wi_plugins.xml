@@ -10,17 +10,17 @@
     <ImageView
         android:id="@android:id/icon"
         android:layout_gravity="center"
-        android:layout_width="50dp"
-        android:layout_height="50dp" />
+        android:layout_width="57dp"
+        android:layout_height="57dp" />
 
     <TextView
         android:id="@android:id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:textColor="@color/rc_text_color_primary"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/rc_text_voice"
         android:gravity="center"
-        android:textSize="12dp" />
+        android:textSize="12sp" />
 
 </LinearLayout>
