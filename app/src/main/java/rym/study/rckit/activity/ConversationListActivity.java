@@ -21,7 +21,9 @@ import io.rong.imkit.RongIM;
 import io.rong.imkit.fragment.ConversationListFragment;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Conversation;
+import io.rong.imlib.model.Message;
 import io.rong.imlib.model.UserInfo;
+import io.rong.message.TextMessage;
 import rym.study.rckit.R;
 import rym.study.rckit.message.CustomizeMessage;
 import rym.study.rckit.utils.MathUtil;
@@ -40,6 +42,15 @@ public class ConversationListActivity extends AppCompatActivity {
 
         initView();
         initSettings();
+
+        RongIMClient.getInstance().setOnReceiveMessageListener(new RongIMClient.OnReceiveMessageListener() {
+            @Override
+            public boolean onReceived(Message message, int i) {
+                TextMessage msg = (TextMessage) message.getContent();
+                Log.d("RYM", "msg = " + msg.getContent());
+                return false;
+            }
+        });
     }
 
     @Override
@@ -104,8 +115,41 @@ public class ConversationListActivity extends AppCompatActivity {
                         }).setNegativeButton("Cancel", null).show();
                 break;
             case R.id.menu_test_case1:
+                RongIMClient.getInstance().joinChatRoom("chat1", 10, new RongIMClient.OperationCallback() {
+                    @Override
+                    public void onSuccess() {
+                        Log.d("RYM", "onSuccess");
+                    }
+
+                    @Override
+                    public void onError(RongIMClient.ErrorCode errorCode) {
+                        Log.d("RYM", "onError");
+                    }
+                });
                 break;
             case R.id.menu_test_case2:
+                RongIMClient.getInstance().sendMessage(Conversation.ConversationType.CHATROOM, "chat1", TextMessage.obtain("asdfasfd"), null, null, new RongIMClient.SendMessageCallback() {
+                    @Override
+                    public void onError(Integer integer, RongIMClient.ErrorCode errorCode) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(Integer integer) {
+
+                    }
+                }, new RongIMClient.ResultCallback<Message>() {
+
+                    @Override
+                    public void onSuccess(Message message) {
+
+                    }
+
+                    @Override
+                    public void onError(RongIMClient.ErrorCode errorCode) {
+
+                    }
+                });
                 break;
             default:
         }

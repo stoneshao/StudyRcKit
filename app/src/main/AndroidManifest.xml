@@ -41,7 +41,6 @@
 
         <activity
             android:name=".activity.ConversationActivity"
-            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
