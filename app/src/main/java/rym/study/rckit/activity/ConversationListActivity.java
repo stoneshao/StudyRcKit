@@ -1,5 +1,6 @@
 package rym.study.rckit.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import io.rong.imkit.RongIM;
 import io.rong.imkit.fragment.ConversationListFragment;
@@ -119,6 +121,26 @@ public class ConversationListActivity extends AppCompatActivity {
 //                    }
 //                });
                 RongIM.getInstance().logout();
+
+                RongIM.connect("cLgC/14g+MleJRWbDjT0MB98SqO+r0C2XA+OgdNJq5WwR52kQjHZp7mbX5VjrR5FMts1B/QOKR4fWds+Kj0mqA==", new RongIMClient.ConnectCallback() {
+                    @Override
+                    public void onTokenIncorrect() {
+                        Log.e(TAG, "connectIMServer onTokenIncorrect.");
+                        Toast.makeText(getApplicationContext(), "Get token incorrect.", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onSuccess(String userId) {
+                        Log.d(TAG, "connectIMServer onSuccess. userId = " + userId);
+                        Toast.makeText(getApplicationContext(), "Connect successful.", Toast.LENGTH_SHORT).show();
+//                finish();
+                    }
+
+                    @Override
+                    public void onError(RongIMClient.ErrorCode errorCode) {
+                        Log.d(TAG, "connectIMServer onError. errorCode = " + errorCode);
+                    }
+                });
                 break;
             case R.id.menu_test_case2:
 //                RongIMClient.getInstance().sendMessage(Conversation.ConversationType.CHATROOM, "chat1", TextMessage.obtain("asdfasfd"), null, null, new RongIMClient.SendMessageCallback() {
