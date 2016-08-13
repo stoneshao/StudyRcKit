@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@android:id/icon"
+            android:id="@+id/rc_audio_state_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -24,7 +24,7 @@
             android:layout_marginTop="20dp" />
 
         <TextView
-            android:id="@android:id/text1"
+            android:id="@+id/rc_audio_timer"
             android:layout_width="105dp"
             android:layout_height="105dp"
             android:layout_centerHorizontal="true"
@@ -38,7 +38,7 @@
             android:visibility="gone" />
 
         <TextView
-            android:id="@android:id/message"
+            android:id="@+id/rc_audio_state_text"
             android:layout_width="160dp"
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"
@@ -50,7 +50,6 @@
             android:background="@drawable/rc_corner_voice_style"
             android:gravity="center"
             android:textColor="@android:color/white"
-            android:text="sdgadgag"
             android:textSize="15sp" />
     </RelativeLayout>
 </FrameLayout>

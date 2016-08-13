@@ -22,4 +22,11 @@
 
     <!-- 默认图片保存路径，在会话界面查看大图，长按时选择保存，会使用这个配置-->
     <string name="rc_image_default_saved_path">/RongCloud/Image/</string>
+
+    <!-- 设置是否支持消息撤回-->
+    <bool name="rc_enable_message_recall">false</bool>
+    <!-- 消息撤回有效时间（单位：秒）-->
+    <integer name="rc_message_recall_interval">120</integer>
+    
+    <bool name="rc_enable_mentioned_message">false</bool>
 </resources>

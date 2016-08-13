@@ -44,9 +44,14 @@
     <string name="rc_message_content_rich_text">[RichContent]</string>
     <string name="rc_message_content_location">[Location]</string>
     <string name="rc_message_content_draft">[Draft]</string>
+    <string name="rc_message_content_mentioned">[You were mentioned]</string>
 
     <string name="rc_dialog_item_message_delete">Delete</string>
     <string name="rc_dialog_item_message_copy">Copy</string>
+    <string name="rc_dialog_item_message_recall">Recall</string>
+    <string name="rc_recall_failed">Recall failed</string>
+    <string name="rc_you_recalled_a_message">You recalled a message</string>
+    <string name="rc_recalled_a_message">&#160;recalled a message</string>
 
     <string name="rc_message_unread_count">"···"</string>
     <string name="rc_input_voice">Hold to Talk</string>
@@ -92,7 +97,7 @@
     <string name="rc_notice_select_one_picture_at_last">Please select at least a picture</string>
 
     <string name="rc_message_unknown">The current version does not support viewing this message</string>
-
+    <string name="rc_new_messages">&#160;new messages</string>
     <string name="rc_info_not_in_discussion">You are not in current discussion</string>
     <string name="rc_info_not_in_group">You are not in current group</string>
     <string name="rc_info_not_in_chatroom">You are not in current chat room</string>
@@ -157,6 +162,9 @@
 
 
     <string name="rc_join_chatroom_failure">Join chatroom failure</string>
+    <string name="rc_cs_select_group">Please select the contents</string>
+    <string name="rc_search">Search</string>
+    <string name="rc_choose_members">Select Member</string>
 
 
     <string name="rc_quit_custom_service">Custom Service Have Quit</string>

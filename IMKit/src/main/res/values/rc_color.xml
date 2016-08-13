@@ -18,7 +18,10 @@
     <color name="rc_notice_text">#999999</color>
     <color name="rc_location_text">#7F000000</color>
 
+    <color name="rc_web_progress_bar">#0195ff</color>
+
     <color name="rc_draft_color">#cb120f</color>
+    <color name="rc_mentioned_color">#cc3333</color>
     <color name="rc_voice_color">#0195ff</color>
     <color name="rc_voice_color_left">#4385bf</color>
     <color name="rc_voice_color_right">#a2a2a2</color>
@@ -39,5 +42,8 @@
 
     <!-- PicturePreviewActivity -->
     <color name="rc_picprev_toolbar_transparent">@color/rc_picsel_toolbar_transparent</color>
+
+    <color name="rc_input_gap_color">#dbdbdd</color>
+    <color name="rc_conversation_list_divider_color">#dfdfdd</color>
 
 </resources>

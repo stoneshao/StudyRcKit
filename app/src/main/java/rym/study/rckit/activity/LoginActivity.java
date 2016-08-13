@@ -121,7 +121,7 @@ public class LoginActivity extends AppCompatActivity implements Handler.Callback
                 intent.putExtra("UserID", userId);
                 intent.setClass(LoginActivity.this, ConversationListActivity.class);
                 startActivity(intent);
-                finish();
+//                finish();
             }
 
             @Override

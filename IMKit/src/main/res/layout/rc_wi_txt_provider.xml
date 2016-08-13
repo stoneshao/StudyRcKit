@@ -22,7 +22,7 @@
                 android:id="@android:id/icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_marginTop="5dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/rc_ic_smiley" />
 
@@ -56,7 +56,7 @@
             android:layout_toLeftOf="@id/rc_layout"
             android:background="@android:color/transparent"
             android:maxLines="4"
-            android:padding="2dp"
+            android:paddingTop="5dp"
             android:textColor="#353535"
             android:textSize="16sp" />
     </RelativeLayout>

@@ -36,9 +36,14 @@
     <string name="rc_message_content_rich_text">[图文]</string>
     <string name="rc_message_content_location">[位置]</string>
     <string name="rc_message_content_draft">[草稿]</string>
+    <string name="rc_message_content_mentioned">[有人@我]</string>
 
     <string name="rc_dialog_item_message_delete">删除消息</string>
     <string name="rc_dialog_item_message_copy">复制消息</string>
+    <string name="rc_dialog_item_message_recall">撤回消息</string>
+    <string name="rc_recall_failed">撤回失败</string>
+    <string name="rc_you_recalled_a_message">你撤回了一条消息</string>
+    <string name="rc_recalled_a_message">撤回了一条消息</string>
 
     <string name="rc_message_unread_count">"···"</string>
     <string name="rc_input_voice">按住 说话</string>
@@ -72,7 +77,7 @@
     <string name="rc_pub_service_info_enter">进入公众号</string>
     <string name="rc_pub_service_info_follow">关注</string>
     <string name="rc_pub_service_info_unfollow">取消关注</string>
-    <string name="rc_pub_service_info_account">公众号：%1$s</string>
+    <string name="rc_pub_service_info_account">公众号：%s</string>
 
     <string name="rc_notice_network_unavailable">网络连接不可用</string>
     <string name="rc_notice_disconnect">无法连接到服务器</string>
@@ -88,7 +93,7 @@
     <string name="rc_notice_select_one_picture_at_last">请至少选择一张图片</string>
 
     <string name="rc_message_unknown">当前版本暂不支持查看此消息</string>
-
+    <string name="rc_new_messages">条新消息</string>
     <string name="rc_info_not_in_discussion">你不在该讨论组</string>
     <string name="rc_info_not_in_group">你不在该群</string>
     <string name="rc_info_not_in_chatroom">你不在该聊天室</string>
@@ -151,7 +156,9 @@
     <string name="rc_permission_microphone_and_camera">（麦克风，相机）。</string>
     <string name="rc_permission_camera">（相机）。</string>
     <string name="rc_blacklist_prompt">您已被加入黑名单</string>
-
+    <string name="rc_cs_select_group">请选择咨询内容</string>
+    <string name="rc_search">搜索</string>
+    <string name="rc_choose_members">选择联系人</string>
 
     <string name="rc_quit_custom_service">客服已结束</string>
     <string name="rc_init_failed">连接客服失败</string>
