@@ -1,14 +1,19 @@
 package rym.study.rckit.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import io.rong.imkit.RongIM;
@@ -36,7 +41,7 @@ public class ConversationListActivity extends AppCompatActivity {
         initView();
         initSettings();
 
-        RongIMClient.getInstance().setOnReceiveMessageListener(new RongIMClient.OnReceiveMessageListener() {
+        RongIM.setOnReceiveMessageListener(new RongIMClient.OnReceiveMessageListener() {
             @Override
             public boolean onReceived(Message message, int i) {
                 TextMessage msg = (TextMessage) message.getContent();
@@ -95,76 +100,21 @@ public class ConversationListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_chat:
-                RongIM.getInstance().startChatRoomChat(ConversationListActivity.this, "Chat001", true);
-//                LayoutInflater inflater = getLayoutInflater();
-//                final View view = inflater.inflate(R.layout.dialog_open_chat, null);
-//                new AlertDialog.Builder(this).setTitle("Private chat").setView(view)
-//                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                String targetId = ((EditText) view.findViewById(R.id.edit_chat_to)).getText().toString();
-//                                Log.d(TAG, "chat to = " + targetId);
-//                                RongIM.getInstance().startPrivateChat(ConversationListActivity.this, targetId, null);
-//                            }
-//                        }).setNegativeButton("Cancel", null).show();
+                LayoutInflater inflater = getLayoutInflater();
+                final View view = inflater.inflate(R.layout.dialog_open_chat, null);
+                new AlertDialog.Builder(this).setTitle("Private chat").setView(view)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String targetId = ((EditText) view.findViewById(R.id.edit_chat_to)).getText().toString();
+                                Log.d(TAG, "chat to = " + targetId);
+                                RongIM.getInstance().startPrivateChat(ConversationListActivity.this, targetId, null);
+                            }
+                        }).setNegativeButton("Cancel", null).show();
                 break;
             case R.id.menu_test_case1:
-//                RongIMClient.getInstance().joinChatRoom("chat1", 10, new RongIMClient.OperationCallback() {
-//                    @Override
-//                    public void onSuccess() {
-//                        Log.d("RYM", "onSuccess");
-//                    }
-//
-//                    @Override
-//                    public void onError(RongIMClient.ErrorCode errorCode) {
-//                        Log.d("RYM", "onError");
-//                    }
-//                });
-                RongIM.getInstance().logout();
-
-                RongIM.connect("cLgC/14g+MleJRWbDjT0MB98SqO+r0C2XA+OgdNJq5WwR52kQjHZp7mbX5VjrR5FMts1B/QOKR4fWds+Kj0mqA==", new RongIMClient.ConnectCallback() {
-                    @Override
-                    public void onTokenIncorrect() {
-                        Log.e(TAG, "connectIMServer onTokenIncorrect.");
-                        Toast.makeText(getApplicationContext(), "Get token incorrect.", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onSuccess(String userId) {
-                        Log.d(TAG, "connectIMServer onSuccess. userId = " + userId);
-                        Toast.makeText(getApplicationContext(), "Connect successful.", Toast.LENGTH_SHORT).show();
-//                finish();
-                    }
-
-                    @Override
-                    public void onError(RongIMClient.ErrorCode errorCode) {
-                        Log.d(TAG, "connectIMServer onError. errorCode = " + errorCode);
-                    }
-                });
                 break;
             case R.id.menu_test_case2:
-//                RongIMClient.getInstance().sendMessage(Conversation.ConversationType.CHATROOM, "chat1", TextMessage.obtain("asdfasfd"), null, null, new RongIMClient.SendMessageCallback() {
-//                    @Override
-//                    public void onError(Integer integer, RongIMClient.ErrorCode errorCode) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onSuccess(Integer integer) {
-//
-//                    }
-//                }, new RongIMClient.ResultCallback<Message>() {
-//
-//                    @Override
-//                    public void onSuccess(Message message) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onError(RongIMClient.ErrorCode errorCode) {
-//
-//                    }
-//                });
                 break;
             default:
         }
