@@ -4,19 +4,30 @@
     android:id="@id/rc_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
+    <LinearLayout
         android:id="@+id/rc_status_bar"
         android:layout_width="match_parent"
         android:layout_height="46dp"
-        android:gravity="center_vertical"
-        android:drawableLeft="@drawable/rc_notification_network_available"
-        android:drawablePadding="25dp"
-        android:paddingLeft="27dp"
-        android:text="当前网络不可用"
-        android:textColor="#776868"
         android:background="#ffdfdf"
-        android:textSize="14sp"
-        android:visibility="gone"/>
+        android:orientation="horizontal"
+        android:visibility="gone">
+        <ImageView
+            android:id="@+id/rc_status_bar_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="27dp"
+            android:layout_gravity="center_vertical"
+            android:indeterminateDrawable="@drawable/rc_notification_network_available"/>
+        <TextView
+            android:id="@+id/rc_status_bar_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="25dp"
+            android:layout_gravity="center_vertical"
+            android:text="@string/rc_notice_network_unavailable"
+            android:textColor="#776868"
+            android:textSize="14sp"/>
+    </LinearLayout>
 
     <ListView
         android:id="@id/rc_list"

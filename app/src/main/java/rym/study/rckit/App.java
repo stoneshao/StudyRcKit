@@ -20,7 +20,7 @@ public class App extends Application {
         if (getApplicationInfo().packageName.equals(getCurProcessName(getApplicationContext())) ||
                 "io.rong.push".equals(getCurProcessName(getApplicationContext()))) {
             RongPushClient.registerMiPush(this, "2882303761517489607", "5831748913607");
-            RongIM.init(this);
+            RongIM.init(this, "n19jmcy59ocx9");
             RongIM.getInstance().registerMessageType(CustomizeMessage.class);
             RongIM.getInstance().registerMessageTemplate(new CustomizeMessageItemProvider());
         }

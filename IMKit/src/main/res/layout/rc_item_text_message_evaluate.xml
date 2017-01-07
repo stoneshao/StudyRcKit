@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:adjustViewBounds="true"
     android:orientation="vertical">
-    <io.rong.imkit.model.LinkTextView
+    <io.rong.imkit.widget.AutoLinkTextView
         android:id="@+id/evaluate_text"
         style="@style/RCTheme.Message.TextView"
         android:layout_width="185dp"

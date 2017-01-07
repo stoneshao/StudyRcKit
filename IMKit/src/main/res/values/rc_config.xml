@@ -16,10 +16,6 @@
     <!-- 退出客服页面是否关闭客服 -->
     <bool name="rc_stop_custom_service_when_quit">true</bool>
 
-    <!-- 是否开启，在会话界面下拉时，拉取云端历史消息 -->
-    <!-- 此功能要开通对应服务器，才可使用-->
-    <bool name="rc_enable_get_remote_history_message">false</bool>
-
     <!-- 默认图片保存路径，在会话界面查看大图，长按时选择保存，会使用这个配置-->
     <string name="rc_image_default_saved_path">/RongCloud/Image/</string>
 
@@ -29,4 +25,10 @@
     <integer name="rc_message_recall_interval">120</integer>
     
     <bool name="rc_enable_mentioned_message">false</bool>
+
+    <!-- 设置已读回执，仅限单聊 -->
+    <bool name="rc_read_receipt">false</bool>
+
+    <!-- 开启之后，用户在其他端上阅读过的消息，当前客户端会清掉该消息的未读数。目前仅支持单聊、群聊、讨论组。-->
+    <bool name="rc_enable_sync_read_status">false</bool>
 </resources>

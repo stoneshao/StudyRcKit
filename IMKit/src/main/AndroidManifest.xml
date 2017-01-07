@@ -23,17 +23,25 @@
     <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
 
     <application>
 
+        <activity android:name=".plugin.location.AMapLocationActivity" />
+
+        <activity android:name=".plugin.location.AMapPreviewActivity" />
+
+        <activity android:name=".plugin.location.AMapRealTimeActivity" />
+
         <activity
-            android:name="io.rong.imkit.activity.PictureSelectorActivity"
+            android:name=".plugin.image.PictureSelectorActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="io.rong.imkit.activity.PicturePreviewActivity"
+            android:name=".plugin.image.PicturePreviewActivity"
             android:screenOrientation="portrait" />
 
+        <!-- 开发者可以修改 RongBaseActivity 的 rc_base_activity_layout 布局文件调整 actionbar-->
         <activity
             android:name="io.rong.imkit.tools.RongWebviewActivity"
             android:screenOrientation="portrait">
@@ -41,96 +49,41 @@
                 <action android:name="io.rong.imkit.intent.action.webview" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
-            <intent-filter>
-                <data
-                    android:host="*"
-                    android:scheme="http" />
-                <data
-                    android:host="*"
-                    android:scheme="https" />
-
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-            </intent-filter>
         </activity>
 
         <activity
             android:name="io.rong.imkit.widget.provider.TakingPicturesActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="io.rong.imkit.activity.PicturePagerActivity"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
-
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="io.rong.imkit.intent.action.picturepagerview" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name="io.rong.imkit.mention.MemberMentionedActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden"
-            android:configChanges="orientation|keyboardHidden"/>
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".activity.FileManagerActivity" />
+        <activity android:name=".activity.FileListActivity" />
+        <activity android:name=".activity.FilePreviewActivity" />
 
-
-        <!--必选： SDK 核心功能-->
-        <service
-            android:name="io.rong.push.core.PushRegistrationService"
-            android:exported="false">
-        </service>
-        <service
-            android:name="io.rong.push.PushService"
-            android:exported="false"
-            android:process="io.rong.push">
-        </service>
-
-        <service
-            android:name="io.rong.push.core.MessageHandleService"
-            android:exported="true">
-        </service>
-
-        <receiver
-            android:name="io.rong.push.PushReceiver"
-            android:process="io.rong.push">
-            <intent-filter>
-                <action android:name="io.rong.push.intent.action.HEART_BEAT" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.USER_PRESENT" />
-                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
-                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
-            </intent-filter>
-        </receiver>
-        
-        <!--必选： SDK 核心功能-->
-
-        <!-- end -->
-
-        <!-- imlib config begin -->
-        <meta-data
-            android:name="RONG_CLOUD_APP_KEY"
-            android:value="n19jmcy59ocx9" />
-
-        <service
-            android:name="io.rong.imlib.ipc.RongService"
-            android:exported="true"
-            android:process=":ipc" />
-
-        <service android:name="io.rong.imlib.ReConnectService" />
-
-        <receiver android:name="io.rong.imlib.ConnectChangeReceiver" />
-
-        <receiver
-            android:name="io.rong.imlib.HeartbeatReceiver"
-            android:process=":ipc" />
-        <!-- imlib config end -->
-
+        <!-- 此部分代码需要移植到您的 app 下的 manifest，并且 authorities 指定您的包名。例如：com.android.FileProvider -->
+        <!-- 否则使用拍照功能时，会崩溃 -->
+        <!--<provider-->
+            <!--android:name="android.support.v4.content.FileProvider"-->
+            <!--android:authorities="包名.FileProvider"-->
+            <!--android:grantUriPermissions="true"-->
+            <!--android:exported="false">-->
+            <!--<meta-data-->
+                <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
+                <!--android:resource="@xml/rc_file_path"/>-->
+        <!--</provider>-->
     </application>
 
 </manifest>
