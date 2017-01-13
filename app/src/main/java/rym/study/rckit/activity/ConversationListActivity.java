@@ -1,5 +1,6 @@
 package rym.study.rckit.activity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import io.rong.imkit.RongIM;
 import io.rong.imkit.fragment.ConversationListFragment;
+import io.rong.imkit.model.UIConversation;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Conversation;
 import io.rong.imlib.model.Message;
@@ -46,6 +48,33 @@ public class ConversationListActivity extends AppCompatActivity {
             public boolean onReceived(Message message, int i) {
                 TextMessage msg = (TextMessage) message.getContent();
                 Log.d("RYM", "msg = " + msg.getContent());
+                return false;
+            }
+        });
+
+        RongIM.setConversationListBehaviorListener(new RongIM.ConversationListBehaviorListener() {
+
+            @Override
+            public boolean onConversationPortraitClick(Context context, Conversation.ConversationType conversationType, String s) {
+                Log.d(TAG, "onConversationPortraitClick");
+                return false;
+            }
+
+            @Override
+            public boolean onConversationPortraitLongClick(Context context, Conversation.ConversationType conversationType, String s) {
+                Log.d(TAG, "onConversationPortraitLongClick");
+                return false;
+            }
+
+            @Override
+            public boolean onConversationLongClick(Context context, View view, UIConversation uiConversation) {
+                Log.d(TAG, "onConversationLongClick");
+                return false;
+            }
+
+            @Override
+            public boolean onConversationClick(Context context, View view, UIConversation uiConversation) {
+                Log.d(TAG, "onConversationClick");
                 return false;
             }
         });
