@@ -9,25 +9,53 @@
     <!--<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />-->
 
     <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
-    <!--<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION_LOCATION" />-->
+    <!--<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
 
     <application>
-        <activity android:name="com.jrmf360.rylib.ui.AddCardActivity"/>
-        <activity android:name="com.jrmf360.rylib.ui.AddCardFirsstActivity"/>
-        <activity android:name="com.jrmf360.rylib.ui.AddCardSecondActivity"/>
-        <activity android:name="com.jrmf360.rylib.ui.BankCardListActivity"/>
+        <activity android:name="com.jrmf360.rylib.rp.ui.AddCardActivity"/>
+        <activity android:name="com.jrmf360.rylib.rp.ui.AddCardFirsstActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.jrmf360.rylib.rp.ui.AddCardSecondActivity"/>
+        <activity android:name="com.jrmf360.rylib.rp.ui.BankCardListActivity"/>
         <activity
-            android:name="com.jrmf360.rylib.ui.EnBrowserActivity"
-            android:theme="@style/AnimTranslucent"/>
+            android:name="com.jrmf360.rylib.rp.ui.EnBrowserActivity"/>
         <activity
-            android:name="com.jrmf360.rylib.ui.PayTypeActivity"
-            android:theme="@style/dialog"
+            android:name="com.jrmf360.rylib.rp.ui.PayTypeActivity"
+            android:theme="@style/jrmf_dialog"
             android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.jrmf360.rylib.ui.RealNameActivity"/>
-        <activity android:name="com.jrmf360.rylib.ui.ResetPswdActivity"/>
-        <activity android:name="com.jrmf360.rylib.ui.SendGroupEnvelopesActivity"/>
-        <activity android:name="com.jrmf360.rylib.ui.SendSingleEnvelopesActivity"/>
-        <activity android:name="com.jrmf360.rylib.ui.SettingPswdActivity"/>
+        <activity android:name="com.jrmf360.rylib.rp.ui.RealNameActivity"/>
+        <activity android:name="com.jrmf360.rylib.rp.ui.ResetPswdActivity"/>
+        <activity android:name="com.jrmf360.rylib.rp.ui.SendGroupEnvelopesActivity"/>
+        <activity android:name="com.jrmf360.rylib.rp.ui.SendSingleEnvelopesActivity"/>
+        <activity android:name="com.jrmf360.rylib.rp.ui.SettingPswdActivity"/>
+        <activity android:name="com.jrmf360.rylib.rp.ui.RpDetailActivity"/>
+        <activity android:name="com.jrmf360.rylib.rp.ui.MyRpActivity"/>
+        <activity android:name="com.jrmf360.rylib.rp.ui.FindPwdByInfoActivity"/>
+
+        <!--钱包 配置开始-->
+        <activity android:name="com.jrmf360.rylib.wallet.ui.MyWalletActivity"/>
+        <activity android:name="com.jrmf360.rylib.wallet.ui.AccountInfoActivity"/>
+        <activity android:name="com.jrmf360.rylib.wallet.ui.TradeHistoryActivity"/>
+        <activity android:name="com.jrmf360.rylib.wallet.ui.SecureSettingActivity"/>
+        <activity android:name="com.jrmf360.rylib.wallet.ui.SetPayPwdActivity"/>
+        <activity android:name="com.jrmf360.rylib.wallet.ui.IdentityAuthenActivity"/>
+        <activity android:name="com.jrmf360.rylib.wallet.ui.UpdatePwdActivity"/>
+        <activity android:name="com.jrmf360.rylib.wallet.ui.GetPwdActivity"/>
+        <activity android:name="com.jrmf360.rylib.wallet.ui.SupportBankCardActivity"/>
+        <activity android:name="com.jrmf360.rylib.wallet.ui.BankSettingActivity"/>
+        <activity android:name="com.jrmf360.rylib.wallet.ui.AddCardSecondActivity"/>
+        <activity android:name="com.jrmf360.rylib.wallet.ui.AddCardFirstActivity"/>
+        <activity android:name="com.jrmf360.rylib.wallet.ui.RechargeActivity"/>
+        <activity android:name="com.jrmf360.rylib.wallet.ui.GetDepositActivity"/>
+        <activity android:name="com.jrmf360.rylib.wallet.ui.PwdCheckActivity"/>
+        <activity android:name="com.jrmf360.rylib.wallet.ui.MyRpActivity"/>
+        <activity android:name="com.jrmf360.rylib.wallet.ui.SelectSubBankActivity"/>
+        <activity android:name="com.jrmf360.rylib.wallet.ui.WebViewActivity"/>
+        <activity android:name="com.jrmf360.rylib.wallet.ui.TradeDetailActivity"/>
+
+        <!--钱包配置结束-->
+
+
         <!--支付宝 begin-->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"

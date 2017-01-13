@@ -37,6 +37,12 @@ public class LoginActivity extends AppCompatActivity implements Handler.Callback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initView();
+        RongIM.setConnectionStatusListener(new RongIMClient.ConnectionStatusListener() {
+            @Override
+            public void onChanged(ConnectionStatus connectionStatus) {
+                Log.d(TAG, "onChanged = " + connectionStatus);
+            }
+        });
     }
 
     private void initView() {

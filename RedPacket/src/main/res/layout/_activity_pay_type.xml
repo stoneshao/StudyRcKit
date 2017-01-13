@@ -85,7 +85,7 @@
     <LinearLayout
         android:id="@+id/layout_paytype"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height"
+        android:layout_height="@dimen/btn_height"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/base_padding">
@@ -98,6 +98,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:layout_weight="1"
             android:orientation="horizontal">
             <TextView
@@ -168,13 +169,13 @@
             android:id="@+id/btn_pay"
             style="@style/text_white_16"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/actionbar_height"
+            android:layout_height="@dimen/btn_height"
             android:layout_marginTop="18dp"
             android:background="@drawable/selector_common_btn"
             android:text="@string/btn_pay"
             android:visibility="gone" />
 
-        <com.jrmf360.rylib.gridpwdview.GridPasswordView
+        <com.jrmf360.rylib.rp.gridpwdview.GridPasswordView
             android:id="@+id/gpv_pswd"
             android:layout_width="match_parent"
             android:layout_height="44dp"

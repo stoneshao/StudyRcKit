@@ -12,11 +12,11 @@
         android:text="发红包"
         android:gravity="center"
         android:textColor="@color/white"
-        android:textSize="18dip"/>
+        android:textSize="17sp"/>
     <ImageView
         android:id="@+id/iv_back"
-        android:layout_width="@dimen/actionbar_height"
-        android:layout_height="@dimen/actionbar_height"
-        android:background="@drawable/_top_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/top_back"
         android:layout_gravity="center_vertical"/>
 </FrameLayout>

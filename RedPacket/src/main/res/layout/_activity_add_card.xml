@@ -6,10 +6,9 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context=".ui.AddCardActivity">
+    tools:context=".rp.ui.AddCardActivity">
 
-    <com.jrmf360.rylib.widget.ActionBarView
-
+    <com.jrmf360.rylib.rp.widget.ActionBarView
         android:id="@+id/actionbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,7 +30,7 @@
             android:layout_height="wrap_content"
             android:text="请用XXX名下银行储蓄卡" />
 
-        <com.jrmf360.rylib.widget.FloatingLabelTextView
+        <com.jrmf360.rylib.rp.widget.FloatingLabelTextView
 
             android:id="@+id/ftv_cardno"
             android:layout_width="match_parent"
@@ -55,7 +54,7 @@
             android:id="@+id/btn_next_step1"
             style="@style/text_white_16"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/actionbar_height"
+            android:layout_height="@dimen/btn_height"
             android:layout_marginTop="@dimen/base_padding"
             android:background="@drawable/selector_common_btn"
             android:text="下一步" />

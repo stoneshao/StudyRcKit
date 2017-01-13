@@ -24,8 +24,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dip"
         android:layout_marginRight="5dp"
-        android:gravity="center"
-        tools:text="您领取了刘洪林刘洪林刘洪林的红包"
+        android:ellipsize="middle"
+        android:gravity="center_vertical|left"
+        tools:text="您领取了刘洪林的您领取了刘洪林您领取了刘洪林的您领取了刘洪林"
         android:textColor="@color/white"
         android:textSize="14sp"/>
 

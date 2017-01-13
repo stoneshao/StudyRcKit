@@ -6,8 +6,8 @@
     android:orientation="horizontal"
     android:paddingLeft="@dimen/base_padding"
     android:gravity="center_vertical"
-    android:paddingTop="5dip"
-    android:paddingBottom="5dip">
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp">
 
     <ImageView
         android:id="@+id/iv_bank_icon"
@@ -17,9 +17,10 @@
     <TextView
         android:id="@+id/tv_bank_name"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height"
-        android:textColor="@color/black"
+        android:layout_height="@dimen/btn_height"
+        android:textColor="@color/gray"
         android:text="中国银行"
+        android:textSize="14sp"
         android:gravity="center_vertical"
         android:layout_marginLeft="@dimen/base_padding"/>
 

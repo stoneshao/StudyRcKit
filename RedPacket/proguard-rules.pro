@@ -1,5 +1,9 @@
 # This is a configuration file for ProGuard.
 # http://proguard.sourceforge.net/index.html#manual/usage.html
+#
+# Starting with version 2.2 of the Android plugin for Gradle, these files are no longer used. Newer
+# versions are distributed with the plugin and unpacked at build time. Files in this directory are
+# no longer maintained.
 
 -dontusemixedcaseclassnames
 -dontskipnonpubliclibraryclasses
@@ -51,48 +55,102 @@
     public static <fields>;
 }
 
-#保持自定义控件类不被混淆
--keepclasseswithmembers class * {
-    public <init>(android.content.Context, android.util.AttributeSet);
-}
-#保持自定义控件类不被混淆
--keepclasseswithmembers class * {
-    public <init>(android.content.Context, android.util.AttributeSet, int);
-}
-#保持自定义控件类不被混淆
--keepclassmembers class * extends android.app.Activity {
-   public void *(android.view.View);
-}
-#保持 Parcelable 不被混淆
--keep class * implements android.os.Parcelable {
-  public static final android.os.Parcelable$Creator *;
-}
-#
-
 # The support library contains references to newer platform versions.
 # Don't warn about those in case this app is linking against an older
 # platform version.  We know about them, and they are safe.
 -dontwarn android.support.**
 
--keep public class * extends android.app.Activity
--keep public class * extends android.app.Service
--keep public class * extends android.content.BroadcastReceiver
--keep public class * extends android.content.ContentProvider
+# Understand the @Keep support annotation.
+-keep class android.support.annotation.Keep
+
+-keep @android.support.annotation.Keep class * {*;}
+
+-keepclasseswithmembers class * {
+    @android.support.annotation.Keep <methods>;
+}
+
+-keepclasseswithmembers class * {
+    @android.support.annotation.Keep <fields>;
+}
+
+-keepclasseswithmembers class * {
+    @android.support.annotation.Keep <init>(...);
+}
+
+
+# webView处理
+-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+    public *;
+}
+-keepattributes Exceptions,InnerClasses
+
+-keepattributes Signature
+
+-keepattributes *Annotation*
+
+# Gson
+-keep class com.google.gson.** { *; }
+
+# alipay
+-keep class com.alipay.** {*;}
+-keep class ta.utdid2.**{*;}
+-keep class ut.device.**{*;}
+-keep class org.json.alipay.**{*;}
+
+# 保留support下的所有类及其内部类
+-keep class android.support.** {*;}
+
+# 保留继承的
 -keep public class * extends android.support.v4.**
--keep public class com.android.vending.licensing.ILicensingService
 
--keep class com.google.gson.stream.** { *; }
--keep class com.google.gson.examples.android.model.** { *; }
--keep class com.uuhelper.Application.** { *; }
--keep class net.sourceforge.zbar.** { *; }
--keep class com.google.android.gms.** { *; }
+#common
 
+#-keep class com.jrmf360.rylib.common.**{*;}
 
--keep class com.alipay.android.app.IAlixPay{*;}
--keep class com.alipay.android.app.IAlixPay$Stub{*;}
--keep class com.alipay.android.app.IRemoteServiceCallback{*;}
--keep class com.alipay.android.app.IRemoteServiceCallback$Stub{*;}
--keep class com.alipay.sdk.app.PayTask{ public *;}
--keep class com.alipay.sdk.app.AuthTask{ public *;}
+-keep class com.jrmf360.rylib.common.fragment.**{*;}
+
+-keep class com.jrmf360.rylib.common.http.**{*;}
+
+-keep class com.jrmf360.rylib.common.model.**{*;}
+
+-keep class com.jrmf360.rylib.common.util.**{*;}
+
+-keep class com.jrmf360.rylib.common.view.**{*;}
+
+-keep class com.jrmf360.rylib.diaplay.**{*;}
+
+-keep class com.jrmf360.rylib.adapter.TradeDetailAdapter{*;}
+
+-keep class com.jrmf360.rylib.modules.**{*;}
+
+#红包
+-keep class com.jrmf360.rylib.rp.extend.**{*;}
+
+-keep class com.jrmf360.rylib.rp.gridpwdview.**{*;}
+
+-keep class com.jrmf360.rylib.rp.http.**{*;}
+
+-keep class com.jrmf360.rylib.rp.ui.**{*;}
+
+-keep class com.jrmf360.rylib.rp.widget.**{*;}
+
+-keep class com.jrmf360.rylib.JrmfClient{*;}
+
+#钱包
+-keep class com.jrmf360.rylib.wallet.fragment.**{*;}
+
+-keep class com.jrmf360.rylib.wallet.ui.**{*;}
+
+-keep class com.jrmf360.rylib.wallet.http.**{*;}
+
+-keep class com.jrmf360.rylib.wallet.webview.**{*;}
+
+-keep class com.jrmf360.rylib.wallet.widget.**{*;}
+
+-keep class com.jrmf360.rylib.wallet.JrmfWalletClient{*;}
+-keep class com.jrmf360.rylib.wallet.JrmfWalletClient$* {
+    *;
+}
+
 
 -ignorewarnings

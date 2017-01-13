@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context=".ui.ResetPswdActivity">
+    tools:context=".rp.ui.ResetPswdActivity">
 
-    <com.jrmf360.rylib.widget.ActionBarView
+    <com.jrmf360.rylib.rp.widget.ActionBarView
         android:id="@+id/actionbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,10 +28,11 @@
             <TextView
                 style="@style/text_gray_16"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/actionbar_height"
+                android:layout_height="@dimen/btn_height"
                 android:background="@color/background"
                 android:gravity="center_vertical"
                 android:paddingLeft="@dimen/base_padding"
+                android:visibility="gone"
                 android:text="请填写证件号码完成身份验证"
                 android:textSize="12dip" />
 
@@ -48,7 +49,7 @@
                     android:layout_gravity="center_vertical"
                     android:text="姓名" />
 
-                <com.jrmf360.rylib.widget.ClearEditText
+                <com.jrmf360.rylib.rp.widget.ClearEditText
                     android:id="@+id/et_username"
                     style="@style/text_black_16"
                     android:layout_width="0dip"
@@ -58,6 +59,7 @@
                     android:textColorHint="@color/color_b7b7b7"
                     android:gravity="center_vertical"
                     android:hint="请填写完整姓名"
+                    android:textColor="@color/black"
                     android:paddingRight="@dimen/base_padding" />
             </LinearLayout>
 
@@ -79,7 +81,7 @@
                     android:layout_gravity="center_vertical"
                     android:text="身份证" />
 
-                <com.jrmf360.rylib.widget.ClearEditText
+                <com.jrmf360.rylib.rp.widget.ClearEditText
                     android:id="@+id/et_identity"
                     style="@style/text_black_16"
                     android:layout_width="0dip"
@@ -88,9 +90,10 @@
                     android:background="@null"
                     android:digits="0123456789xyzXYZ"
                     android:gravity="center_vertical"
-                    android:textColorHint="@color/color_b7b7b7"
                     android:hint="请输入身份证号"
                     android:inputType="number"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/color_b7b7b7"
                     android:paddingRight="@dimen/base_padding" />
             </LinearLayout>
 
@@ -112,7 +115,7 @@
                     android:layout_gravity="center_vertical"
                     android:text="手机号" />
 
-                <com.jrmf360.rylib.widget.ClearEditText
+                <com.jrmf360.rylib.rp.widget.ClearEditText
                     android:id="@+id/et_userphone"
                     style="@style/text_black_16"
                     android:layout_width="0dip"
@@ -121,8 +124,9 @@
                     android:background="@null"
                     android:gravity="center_vertical"
                     android:hint="请输入手机号"
-                    android:textColorHint="@color/color_b7b7b7"
                     android:inputType="phone"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/color_b7b7b7"
                     android:paddingRight="@dimen/base_padding" />
             </LinearLayout>
 
@@ -140,7 +144,7 @@
                     android:layout_gravity="center_vertical"
                     android:text="验证码" />
 
-                <com.jrmf360.rylib.widget.ClearEditText
+                <com.jrmf360.rylib.rp.widget.ClearEditText
                     android:id="@+id/et_vcode"
                     style="@style/text_black_16"
                     android:layout_width="0dip"
@@ -150,6 +154,7 @@
                     android:gravity="center_vertical"
                     android:hint="请填写验证码"
                     android:maxLength="6"
+                    android:textColor="@color/black"
                     android:textColorHint="@color/color_b7b7b7"
                     android:inputType="number"
                     android:paddingRight="@dimen/base_padding" />
@@ -186,7 +191,7 @@
                     android:layout_gravity="center_vertical"
                     android:text="新密码" />
 
-                <com.jrmf360.rylib.widget.ClearEditText
+                <com.jrmf360.rylib.rp.widget.ClearEditText
                     android:id="@+id/et_password"
                     style="@style/text_black_16"
                     android:layout_width="0dip"
@@ -194,6 +199,7 @@
                     android:layout_weight="5"
                     android:background="@null"
                     android:maxLength="6"
+                    android:textColor="@color/black"
                     android:textColorHint="@color/color_b7b7b7"
                     android:inputType="numberPassword"
                     android:gravity="center_vertical"
@@ -213,7 +219,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="确认新密码" />
-                <com.jrmf360.rylib.widget.ClearEditText
+                <com.jrmf360.rylib.rp.widget.ClearEditText
                     android:id="@+id/et_confirm_pwd"
                     style="@style/text_black_16"
                     android:layout_width="0dip"
@@ -221,6 +227,7 @@
                     android:layout_weight="5"
                     android:background="@null"
                     android:maxLength="6"
+                    android:textColor="@color/black"
                     android:textColorHint="@color/color_b7b7b7"
                     android:inputType="numberPassword"
                     android:gravity="center_vertical"
@@ -238,7 +245,7 @@
                     android:id="@+id/btn_next"
                     style="@style/text_black_16"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/actionbar_height"
+                    android:layout_height="@dimen/btn_height"
                     android:background="@drawable/_bg_gray_round"
                     android:text="提交" />
             </LinearLayout>

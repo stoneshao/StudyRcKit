@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/background"
               android:fitsSystemWindows="true"
-    android:orientation="vertical">
+              android:orientation="vertical">
 
-    <com.jrmf360.rylib.widget.ActionBarView
+    <com.jrmf360.rylib.rp.widget.ActionBarView
         android:id="@+id/actionbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:content="发红包" />
+        app:content="发红包"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
                 android:background="@color/red"
                 android:gravity="center"
                 android:text="提示信息"
-                android:textColor="@color/red_dark" />
+                android:textColor="@color/red_dark"/>
 
             <LinearLayout
                 android:id="@+id/ll_peak_num_layout"
@@ -49,7 +49,7 @@
                     android:layout_marginLeft="@dimen/base_padding"
                     android:layout_marginRight="@dimen/base_padding"
                     android:gravity="center_vertical"
-                    android:text="红包个数" />
+                    android:text="红包个数"/>
 
                 <EditText
                     android:id="@+id/et_peak_num"
@@ -58,11 +58,11 @@
                     android:layout_height="@dimen/input_height"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:paddingRight="16dp"
-                    android:textCursorDrawable="@drawable/selector_cursor"
                     android:gravity="right|center_vertical"
                     android:inputType="numberDecimal"
-                    android:maxLength="3" />
+                    android:maxLength="5"
+                    android:paddingRight="16dp"
+                    android:textCursorDrawable="@drawable/selector_cursor"/>
 
                 <TextView
                     style="@style/text_black_16"
@@ -70,7 +70,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="@dimen/base_padding"
                     android:gravity="center_vertical"
-                    android:text="个" />
+                    android:text="个"/>
             </LinearLayout>
 
             <TextView
@@ -79,16 +79,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/base_padding"
-                android:visibility="gone"
                 android:layout_marginTop="7dip"
-                android:text="" />
+                android:text="100"
+                android:visibility="invisible"/>
 
 
             <LinearLayout
                 android:id="@+id/ll_peak_amount_layout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/input_height"
-                android:layout_marginTop="@dimen/base_padding"
+                android:layout_marginTop="@dimen/half_base_margin"
                 android:background="@drawable/_bg_white_round"
                 android:orientation="horizontal">
 
@@ -100,7 +100,7 @@
                     android:layout_marginLeft="@dimen/base_padding"
                     android:layout_marginRight="@dimen/base_padding"
                     android:gravity="center_vertical"
-                    android:text="总金额" />
+                    android:text="总金额"/>
 
                 <EditText
                     android:id="@+id/et_peak_amount"
@@ -109,11 +109,11 @@
                     android:layout_height="@dimen/input_height"
                     android:layout_weight="1"
                     android:background="@null"
+                    android:gravity="right|center_vertical"
+                    android:inputType="numberDecimal"
                     android:maxLength="6"
                     android:paddingRight="16dp"
-                    android:textCursorDrawable="@drawable/selector_cursor"
-                    android:gravity="right|center_vertical"
-                    android:inputType="numberDecimal" />
+                    android:textCursorDrawable="@drawable/selector_cursor"/>
 
                 <TextView
                     style="@style/text_black_16"
@@ -121,7 +121,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="@dimen/base_padding"
                     android:gravity="center_vertical"
-                    android:text="元" />
+                    android:text="元"/>
             </LinearLayout>
 
             <TextView
@@ -131,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/base_padding"
                 android:layout_marginTop="7dip"
-                android:text="红包类型切换" />
+                android:text="红包类型切换"/>
 
 
             <EditText
@@ -139,19 +139,18 @@
                 style="@style/text_black_16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:layout_marginTop="@dimen/base_padding"
+                android:layout_marginTop="@dimen/half_base_margin"
                 android:background="@drawable/_bg_white_round"
                 android:gravity="left|top"
-                android:hint="@string/_bribery_message"
                 android:textColorHint="@color/color_b7b7b7"
-                android:inputType="text"
+                android:hint="@string/_bribery_message"
+                android:maxLength="25"
+                android:minHeight="48dp"
+                android:paddingBottom="8dp"
                 android:paddingLeft="@dimen/base_padding"
                 android:paddingRight="@dimen/base_padding"
-                android:textCursorDrawable="@drawable/selector_cursor"
                 android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:maxLength="25"/>
+                android:textCursorDrawable="@drawable/selector_cursor"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -164,15 +163,16 @@
                     android:layout_height="24dp"
                     android:layout_marginTop="2dp"
                     android:background="@drawable/_rmb"/>
+
                 <TextView
                     android:id="@+id/tv_amount_for_show"
                     style="@style/text_black_28"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/actionbar_height"
                     android:gravity="center"
+                    android:text="0.01"
                     android:textStyle="normal"
-                    android:typeface="serif"
-                    android:text="0.01" />
+                    android:typeface="serif"/>
 
             </LinearLayout>
 
@@ -180,10 +180,10 @@
                 android:id="@+id/btn_putin"
                 style="@style/text_white_16"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/actionbar_height"
+                android:layout_height="@dimen/btn_height"
                 android:layout_marginTop="@dimen/base_padding"
                 android:background="@drawable/selector_common_btn"
-                android:text="@string/btn_put" />
+                android:text="@string/btn_put"/>
         </LinearLayout>
     </ScrollView>
 

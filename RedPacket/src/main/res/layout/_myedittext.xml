@@ -15,7 +15,7 @@
         android:textColor="@color/black"
         android:textSize="12dip" />
 
-    <com.jrmf360.im.widget.ClearEditText
+    <com.jrmf360.rylib.rp.widget.ClearEditText
         android:id="@+id/edittext"
         style="@style/text_black_16"
         android:layout_width="match_parent"

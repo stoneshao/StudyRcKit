@@ -6,7 +6,7 @@
     android:background="@color/background"
     android:orientation="vertical"
      >
-    <com.jrmf360.rylib.widget.ActionBarView
+    <com.jrmf360.rylib.rp.widget.ActionBarView
         android:id="@+id/actionbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
             android:gravity="center_vertical"
             android:text="cardname" />
 
-        <com.jrmf360.rylib.widget.FloatingLabelTextView
+        <com.jrmf360.rylib.rp.widget.FloatingLabelTextView
             android:id="@+id/ftv_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,16 +80,17 @@
             android:id="@+id/tv_protocol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="3dip"
             android:textColor="@color/gray"
+            android:paddingBottom="3dip"
             android:layout_marginTop="25dp"
+            android:textSize="14sp"
             android:text="点击下一步视为您同意《金融魔方用户协议》"/>
 
         <Button
             android:id="@+id/btn_next_step2"
             style="@style/text_white_16"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/actionbar_height"
+            android:layout_height="@dimen/btn_height"
             android:layout_marginTop="@dimen/base_padding"
             android:background="@drawable/selector_common_btn"
             android:text="下一步" />
