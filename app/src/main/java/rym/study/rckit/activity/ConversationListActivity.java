@@ -17,11 +17,17 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+
 import io.rong.imkit.RongIM;
 import io.rong.imkit.fragment.ConversationListFragment;
 import io.rong.imkit.model.UIConversation;
+import io.rong.imlib.IRongCallback;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Conversation;
+import io.rong.imlib.model.MentionedInfo;
 import io.rong.imlib.model.Message;
 import io.rong.imlib.model.UserInfo;
 import io.rong.message.TextMessage;
@@ -142,6 +148,27 @@ public class ConversationListActivity extends AppCompatActivity {
                         }).setNegativeButton("Cancel", null).show();
                 break;
             case R.id.menu_test_case1:
+                ArrayList<String> userIds = new ArrayList<>();
+                userIds.add("UserB");
+                MentionedInfo mm = new MentionedInfo(MentionedInfo.MentionedType.PART, userIds, "saf");
+                TextMessage msg = TextMessage.obtain("asda");
+                msg.setMentionedInfo(mm);
+                RongIMClient.getInstance().sendMessage(Conversation.ConversationType.GROUP, "GroupAAA", msg, null, null, new IRongCallback.ISendMessageCallback() {
+                    @Override
+                    public void onAttached(Message message) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(Message message) {
+                        Log.d("RYM_DG", "onSuccess");
+                    }
+
+                    @Override
+                    public void onError(Message message, RongIMClient.ErrorCode errorCode) {
+                        Log.d("RYM_DG", "onError");
+                    }
+                });
                 break;
             case R.id.menu_test_case2:
                 break;
