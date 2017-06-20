@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceView;
 import android.view.View;
@@ -221,7 +222,7 @@ public class SingleCallActivity extends BaseCallActivity implements Handler.Call
             } else {
                 mediaType = RongCallCommon.CallMediaType.VIDEO;
             }
-            Conversation.ConversationType conversationType = Conversation.ConversationType.valueOf(intent.getStringExtra("conversationType").toUpperCase(Locale.getDefault()));
+            Conversation.ConversationType conversationType = Conversation.ConversationType.valueOf(intent.getStringExtra("conversationType").toUpperCase(Locale.US));
             targetId = intent.getStringExtra("targetId");
 
             List<String> userIds = new ArrayList<>();
@@ -244,10 +245,29 @@ public class SingleCallActivity extends BaseCallActivity implements Handler.Call
             userName.setText(userInfo.getName());
             if (mediaType.equals(RongCallCommon.CallMediaType.AUDIO)) {
                 AsyncImageView userPortrait = (AsyncImageView) mUserInfoContainer.findViewById(R.id.rc_voip_user_portrait);
-                if (userPortrait != null) {
+                if (userPortrait != null && userInfo.getPortraitUri() != null) {
                     userPortrait.setResource(userInfo.getPortraitUri().toString(), R.drawable.rc_default_portrait);
                 }
             }
+        }
+
+        createPowerManager();
+        createPickupDetector();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (pickupDetector != null && mediaType.equals(RongCallCommon.CallMediaType.AUDIO)) {
+            pickupDetector.register(this);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (pickupDetector != null) {
+            pickupDetector.unRegister();
         }
     }
 
@@ -344,6 +364,10 @@ public class SingleCallActivity extends BaseCallActivity implements Handler.Call
     protected void onDestroy() {
         RongContext.getInstance().getEventBus().unregister(this);
         stopRing();
+        if (wakeLock != null && wakeLock.isHeld()) {
+            wakeLock.setReferenceCounted(false);
+            wakeLock.release();
+        }
         RLog.d(TAG, "SingleCallActivity onDestroy");
         super.onDestroy();
     }
@@ -399,10 +423,15 @@ public class SingleCallActivity extends BaseCallActivity implements Handler.Call
 
     @Override
     public void onMediaTypeChanged(String userId, RongCallCommon.CallMediaType mediaType, SurfaceView video) {
-        if (callSession.getSelfUserId().equals(userId))
+        if (callSession.getSelfUserId().equals(userId)) {
             showShortToast(getString(R.string.rc_voip_switch_to_audio));
-        else
-            showShortToast(getString(R.string.rc_voip_remote_switch_to_audio));
+        } else {
+            if (callSession.getMediaType() != RongCallCommon.CallMediaType.AUDIO) {
+                RongCallClient.getInstance().changeCallMediaType(RongCallCommon.CallMediaType.AUDIO);
+                callSession.setMediaType(RongCallCommon.CallMediaType.AUDIO);
+                showShortToast(getString(R.string.rc_voip_remote_switch_to_audio));
+            }
+        }
         initAudioCallView();
         handler.removeMessages(EVENT_FULL_SCREEN);
         mButtonContainer.findViewById(R.id.rc_voip_call_mute).setSelected(muted);
@@ -443,6 +472,10 @@ public class SingleCallActivity extends BaseCallActivity implements Handler.Call
         mButtonContainer.setVisibility(View.VISIBLE);
         View handFreeV = mButtonContainer.findViewById(R.id.rc_voip_handfree);
         handFreeV.setSelected(handFree);
+
+        if (pickupDetector != null) {
+            pickupDetector.register(this);
+        }
     }
 
     public void onHangupBtnClick(View view) {

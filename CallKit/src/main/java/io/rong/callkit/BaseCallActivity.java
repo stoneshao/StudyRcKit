@@ -32,13 +32,15 @@ import io.rong.calllib.RongCallCommon;
 import io.rong.calllib.RongCallSession;
 import io.rong.common.RLog;
 import io.rong.imkit.RongContext;
+import io.rong.imkit.manager.AudioPlayManager;
+import io.rong.imkit.manager.AudioRecordManager;
 import io.rong.imkit.utilities.PermissionCheckUtil;
 import io.rong.imkit.utils.NotificationUtil;
 
 /**
  * Created by weiqinxiao on 16/3/9.
  */
-public class BaseCallActivity extends Activity implements IRongCallListener {
+public class BaseCallActivity extends Activity implements IRongCallListener, PickupDetector.PickupDetectListener {
 
     private static final String TAG = "BaseCallActivity";
     private final static long DELAY_TIME = 1000;
@@ -55,6 +57,10 @@ public class BaseCallActivity extends Activity implements IRongCallListener {
     protected Handler handler;
     private BroadcastReceiver mHomeKeyReceiver;
     protected boolean isFinishing;
+
+    protected PickupDetector pickupDetector;
+    protected PowerManager powerManager;
+    protected PowerManager.WakeLock wakeLock;
 
     static final String[] VIDEO_CALL_PERMISSIONS = {Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA};
     static final String[] AUDIO_CALL_PERMISSIONS = {Manifest.permission.RECORD_AUDIO};
@@ -111,6 +117,9 @@ public class BaseCallActivity extends Activity implements IRongCallListener {
         }
         isFinishing = false;
         RongCallProxy.getInstance().setCallListener(this);
+
+        AudioPlayManager.getInstance().stopPlay();
+        AudioRecordManager.getInstance().destroyRecord();
     }
 
     @Override
@@ -118,10 +127,9 @@ public class BaseCallActivity extends Activity implements IRongCallListener {
         super.onStart();
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("floatbox");
-        if (shouldRestoreFloat && bundle != null){
+        if (shouldRestoreFloat && bundle != null) {
             onRestoreFloatBox(bundle);
         }
-        shouldRestoreFloat = true;
     }
 
     public void onOutgoingCallRinging() {
@@ -133,10 +141,10 @@ public class BaseCallActivity extends Activity implements IRongCallListener {
 
     public void onIncomingCallRinging() {
         int ringerMode = NotificationUtil.getRingerMode(this);
-        if(ringerMode != AudioManager.RINGER_MODE_SILENT){
-            if(ringerMode == AudioManager.RINGER_MODE_VIBRATE){
+        if (ringerMode != AudioManager.RINGER_MODE_SILENT) {
+            if (ringerMode == AudioManager.RINGER_MODE_VIBRATE) {
                 mVibrator = (Vibrator) RongContext.getInstance().getSystemService(Context.VIBRATOR_SERVICE);
-                mVibrator.vibrate(new long[] {500, 1000}, 0);
+                mVibrator.vibrate(new long[]{500, 1000}, 0);
             } else {
                 Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
                 mMediaPlayer = new MediaPlayer();
@@ -153,7 +161,7 @@ public class BaseCallActivity extends Activity implements IRongCallListener {
     }
 
     public void setupTime(final TextView timeView) {
-        if(updateTimeRunnable != null) {
+        if (updateTimeRunnable != null) {
             handler.removeCallbacks(updateTimeRunnable);
         }
         updateTimeRunnable = new UpdateTimeRunnable(timeView);
@@ -169,7 +177,7 @@ public class BaseCallActivity extends Activity implements IRongCallListener {
             mMediaPlayer.stop();
             mMediaPlayer = null;
         }
-        if(mVibrator != null){
+        if (mVibrator != null) {
             mVibrator.cancel();
             mVibrator = null;
         }
@@ -215,6 +223,7 @@ public class BaseCallActivity extends Activity implements IRongCallListener {
             case REMOTE_HANGUP:
             case HANGUP:
             case NETWORK_ERROR:
+            case INIT_VIDEO_ERROR:
                 text = getString(R.string.rc_voip_call_terminalted);
                 break;
         }
@@ -255,8 +264,19 @@ public class BaseCallActivity extends Activity implements IRongCallListener {
         shouldShowFloat = true;
     }
 
+
     @Override
     protected void onPause() {
+        isFinishing = isFinishing();
+        if (isFinishing) {
+            try {
+                if (mHomeKeyReceiver != null) {
+                    unregisterReceiver(mHomeKeyReceiver);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         super.onPause();
         if (shouldShowFloat) {
             Bundle bundle = new Bundle();
@@ -276,7 +296,10 @@ public class BaseCallActivity extends Activity implements IRongCallListener {
         super.onResume();
         RLog.d(TAG, "BaseCallActivity onResume");
         RongCallProxy.getInstance().setCallListener(this);
-        time = CallFloatBoxView.hideFloatBox();
+        if (shouldRestoreFloat) {
+            time = CallFloatBoxView.hideFloatBox();
+        }
+        shouldRestoreFloat = true;
     }
 
     @Override
@@ -287,13 +310,6 @@ public class BaseCallActivity extends Activity implements IRongCallListener {
 
     @Override
     protected void onDestroy() {
-        try {
-            if (mHomeKeyReceiver != null) {
-                unregisterReceiver(mHomeKeyReceiver);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         isFinishing = false;
         handler.removeCallbacks(updateTimeRunnable);
         super.onDestroy();
@@ -371,6 +387,42 @@ public class BaseCallActivity extends Activity implements IRongCallListener {
             }
         } else {
             finish();
+        }
+    }
+
+    protected void createPowerManager() {
+        if (powerManager == null) {
+            powerManager = (PowerManager) getSystemService(POWER_SERVICE);
+            wakeLock = powerManager.newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, TAG);
+        }
+    }
+
+    protected void createPickupDetector() {
+        if (pickupDetector == null) {
+            pickupDetector = new PickupDetector(this);
+        }
+    }
+
+    @Override
+    public void onPickupDetected(boolean isPickingUp) {
+        if (wakeLock == null) {
+            RLog.d(TAG, "No PROXIMITY_SCREEN_OFF_WAKE_LOCK");
+            return;
+        }
+        if (isPickingUp && !wakeLock.isHeld()) {
+            setShouldShowFloat(false);
+            shouldRestoreFloat = false;
+            wakeLock.acquire();
+        }
+        if (!isPickingUp && wakeLock.isHeld()) {
+            try {
+                wakeLock.setReferenceCounted(false);
+                wakeLock.release();
+                setShouldShowFloat(true);
+                shouldRestoreFloat = true;
+            } catch (Exception e) {
+
+            }
         }
     }
 }

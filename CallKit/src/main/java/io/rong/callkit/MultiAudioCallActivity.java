@@ -155,7 +155,7 @@ public class MultiAudioCallActivity extends BaseCallActivity {
             memberContainer.setChildPortraitSize(memberContainer.dip2pix(40));
             List<CallUserProfile> list = callSession.getParticipantProfileList();
             for (CallUserProfile profile : list) {
-                if (!profile.getUserId().equals(callSession.getCallerUserId()) && !profile.getUserId().equals(callSession.getSelfUserId())) {
+                if (!profile.getUserId().equals(callSession.getCallerUserId())) {
                     invitedList.add(profile.getUserId());
                     userInfo = RongContext.getInstance().getUserInfoFromCache(profile.getUserId());
                     memberContainer.addChild(profile.getUserId(), userInfo);
@@ -165,7 +165,7 @@ public class MultiAudioCallActivity extends BaseCallActivity {
             controller.addView(incomingController);
             onIncomingCallRinging();
         } else if (callAction.equals(RongCallAction.ACTION_OUTGOING_CALL)) {
-            Conversation.ConversationType conversationType = Conversation.ConversationType.valueOf(intent.getStringExtra("conversationType").toUpperCase(Locale.getDefault()));
+            Conversation.ConversationType conversationType = Conversation.ConversationType.valueOf(intent.getStringExtra("conversationType").toUpperCase(Locale.US));
             String targetId = intent.getStringExtra("targetId");
             ArrayList<String> userIds = intent.getStringArrayListExtra("invitedUsers");
 
@@ -184,6 +184,27 @@ public class MultiAudioCallActivity extends BaseCallActivity {
             RongCallClient.getInstance().startCall(conversationType, targetId, invitedList, RongCallCommon.CallMediaType.AUDIO, "multi");
         }
         memberContainer.setOverScrollMode(View.OVER_SCROLL_NEVER);
+
+        createPowerManager();
+        createPickupDetector();
+    }
+
+    @Override
+    protected void onPause() {
+        if (pickupDetector != null){
+            pickupDetector.unRegister();
+        }
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        if (pickupDetector == null) createPickupDetector();
+        if (wakeLock == null) createPowerManager();
+        if (pickupDetector != null){
+            pickupDetector.register(this);
+        }
+        super.onResume();
     }
 
     public void onHangupBtnClick(View view) {
@@ -425,6 +446,10 @@ public class MultiAudioCallActivity extends BaseCallActivity {
     @Override
     protected void onDestroy() {
         RongContext.getInstance().getEventBus().unregister(this);
+        if (wakeLock != null && wakeLock.isHeld()){
+            wakeLock.setReferenceCounted(false);
+            wakeLock.release();
+        }
         super.onDestroy();
     }
 
